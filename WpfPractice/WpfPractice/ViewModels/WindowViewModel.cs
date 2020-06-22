@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WpfPractice.Commands;
 using WpfPractice.ViewModels.Base;
@@ -20,6 +21,11 @@ namespace WpfPractice.ViewModels
         /// Radius of the edges of the window
         /// </summary>
         private int _windowRadius = 10;
+        
+        /// <summary>
+        /// The last known dock position
+        /// </summary>
+        private WindowDockPosition _dockPosition = WindowDockPosition.Undocked;
 
         #endregion
 
@@ -28,14 +34,14 @@ namespace WpfPractice.ViewModels
             _window = window;
 
             _window.StateChanged += (sender, e) =>
-             {
-                 // fire off events for all properties that are affected by resize
-                 OnPropertyChanged(nameof(ResizeBorderThickness));
-                 OnPropertyChanged(nameof(OuterMarginSize));
-                 OnPropertyChanged(nameof(OuterMarginSizeThickness));
-                 OnPropertyChanged(nameof(WindowRadius));
-                 OnPropertyChanged(nameof(WindowCornerRadius));
-             };
+            {
+                // fire off events for all properties that are affected by resize
+                OnPropertyChanged(nameof(ResizeBorderThickness));
+                OnPropertyChanged(nameof(OuterMarginSize));
+                OnPropertyChanged(nameof(OuterMarginSizeThickness));
+                OnPropertyChanged(nameof(WindowRadius));
+                OnPropertyChanged(nameof(WindowCornerRadius));
+            };
 
             MinimizeWindow = new RelayCommand(() => _window.WindowState = WindowState.Minimized);
             MaximizeWindow = new RelayCommand(() => _window.WindowState ^= WindowState.Maximized);
@@ -43,11 +49,16 @@ namespace WpfPractice.ViewModels
             MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(_window, GetMousePosition()));
 
             // Fix window resize issue
-            //var resizer = new WindowResizer(_window);
+            new WindowResizer(_window);
         }
 
         #region Public Properties
 
+        /// <summary>
+        /// True if the window should be borderless because it is docked or maximized
+        /// </summary>
+        public bool Borderless => _window.WindowState == WindowState.Maximized || _dockPosition != WindowDockPosition.Undocked;
+        
         /// <summary>
         /// The window minimum width
         /// </summary>
@@ -56,7 +67,7 @@ namespace WpfPractice.ViewModels
         /// <summary>
         /// The window maximum height
         /// </summary>
-        public double WindowWiminumHeight { get; set; } = 400;
+        public double WindowMinimumHeight { get; set; } = 400;
 
         /// <summary>
         /// Size of resize border around the window
@@ -79,7 +90,7 @@ namespace WpfPractice.ViewModels
         /// </summary>
         public int OuterMarginSize
         {
-            get => _window.WindowState == WindowState.Maximized ? 0 : _outerMarginSize;
+            get => Borderless ? 0 : _outerMarginSize;
             set => _outerMarginSize = value;
         }
 
@@ -93,7 +104,7 @@ namespace WpfPractice.ViewModels
         /// </summary>
         public int WindowRadius
         {
-            get => _window.WindowState == WindowState.Maximized ? 0 : _windowRadius;
+            get => Borderless ? 0 : _windowRadius;
             set => _windowRadius = value;
         }
 

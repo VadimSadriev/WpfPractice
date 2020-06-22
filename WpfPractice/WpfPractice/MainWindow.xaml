@@ -10,7 +10,8 @@
         x:Name="AppWindow"
         AllowsTransparency="True"
         MinWidth="{Binding WindowMinimumWidth}"
-        MinHeight="{Binding WindowWiminumHeight}"
+        MinHeight="{Binding WindowMinimumHeight}"
+        Icon="Images/Logo/logo-small.png"
         Title="Welcome, Friend" Height="600" Width="900">
 
     <Window.Resources>
@@ -18,9 +19,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
-                        
                         <!-- Outer border with dropshadow margin -->
-                        <Border Padding="{Binding OuterMarginResizeThickness, FallbackValue=10}">
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
 
                             <!-- Main window outline -->
                             <Grid>
