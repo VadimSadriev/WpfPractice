@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfPractice.Commands;
+using WpfPractice.DataModels;
 using WpfPractice.ViewModels.Base;
 
 namespace WpfPractice.ViewModels
@@ -72,7 +73,7 @@ namespace WpfPractice.ViewModels
         /// <summary>
         /// Size of resize border around the window
         /// </summary>
-        public int ResizeBorder { get; set; } = 6;
+        public int ResizeBorder => Borderless ? 0 : 6;
 
         /// <summary>
         /// Size of resized border around the window taking into account the outer margin
@@ -83,7 +84,8 @@ namespace WpfPractice.ViewModels
         /// <summary>
         /// Padding of the inner content of the main window 
         /// </summary>
-        public Thickness InnerContentPadding => new Thickness(ResizeBorder);
+        //public Thickness InnerContentPadding => new Thickness(ResizeBorder);
+        public Thickness InnerContentPadding => new Thickness(0);
 
         /// <summary>
         /// Margin around the window to allow the drop shadow
@@ -120,6 +122,11 @@ namespace WpfPractice.ViewModels
         public int TitleHeight { get; set; } = 42;
 
         public GridLength TitleHeightGridLength => new GridLength(TitleHeight + ResizeBorder);
+
+        /// <summary>
+        /// The current page of application
+        /// </summary>
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
 
         #endregion
 

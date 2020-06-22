@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPractice"
+        xmlns:converters="clr-namespace:WpfPractice.ValueConverters"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -24,7 +25,7 @@
 
                             <!-- Main window outline -->
                             <Grid>
-                                
+
                                 <!-- Opacity mask for corner on grid-->
                                 <Border x:Name="Container"
                                         Background="{StaticResource BackgroundLightBrush}"
@@ -41,12 +42,12 @@
 
                                 <!-- Main window content -->
                                 <Grid>
-                                    
+
                                     <!-- Corner clipping -->
                                     <Grid.OpacityMask>
                                         <VisualBrush Visual="{Binding ElementName=Container}" />
                                     </Grid.OpacityMask>
-                                    
+
                                     <Grid.RowDefinitions>
                                         <!-- Title height -->
                                         <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}"/>
@@ -72,8 +73,13 @@
                                         </Button>
 
                                         <!-- Title -->
-                                        <Viewbox Grid.Column="1" Margin="0">
-                                            <TextBlock Style="{StaticResource HeaderText}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title, FallbackValue='Welcome, Friend'}"/>
+                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+                                            <StackPanel>
+                                                <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeRegular}" Margin="0 0 0 -5">
+                                                    <Run Text="W" Foreground="{StaticResource WordOrangeBrush}"/><Run Text="O" Foreground="{StaticResource WordBlueBrush}"/><Run Text="R" Foreground="{StaticResource WordRedBrush}"/><Run Text="D" Foreground="{StaticResource WordGreenBrush}"/>
+                                                </TextBlock>
+                                                <TextBlock Text="by fasseto" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center"/>
+                                            </StackPanel>
                                         </Viewbox>
 
                                         <!-- Window buttons -->
@@ -106,7 +112,7 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Grid>
-        <TextBlock Text="Test" />
+    <Grid Background="{StaticResource ForegroundLightBrush}">
+        <Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={converters:ApplicationPageValueConverter}}"/>
     </Grid>
 </Window>
