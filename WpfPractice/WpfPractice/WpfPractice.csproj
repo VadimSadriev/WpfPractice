@@ -58,6 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\fontawesome-webfont.ttf" />
     <None Remove="Images\Backgrounds\emoji-background.png" />
   </ItemGroup>
 

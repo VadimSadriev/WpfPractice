@@ -1,23 +1,43 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using WpfPractice.Animation;
+using WpfPractice.ViewModels.Base;
 
 namespace WpfPractice.Pages
 {
     /// <summary>
     /// Base pages for all pages
     /// </summary>
-    public class BasePage : Page
+    public class BasePage<TViewModel> : Page
+        where TViewModel : BaseViewModel, new()
     {
+        private TViewModel _viewModel;
+
         public BasePage()
         {
             if (PageLoadAnimation != PageAnimation.None)
                 this.Visibility = Visibility.Collapsed;
 
             this.Loaded += BasePage_Loaded;
+
+            ViewModel = new TViewModel();
+        }
+
+        /// <summary>
+        /// The view model associated with this page
+        /// </summary>
+        public TViewModel ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                if (_viewModel == value)
+                    return;
+
+                _viewModel = value;
+                DataContext = _viewModel;
+            }
         }
 
         /// <summary>
