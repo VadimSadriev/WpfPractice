@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WpfPractice.Commands;
@@ -44,6 +45,7 @@ namespace WpfPractice.ViewModels
             await RunCommand(() => LoginIsRunning, async () =>
             {
                 await Task.Delay(5000);
+
                 if (!(param is IHavePassword page))
                     return;
 

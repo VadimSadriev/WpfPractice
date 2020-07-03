@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPractice"
+        xmlns:controls="clr-namespace:WpfPractice.Controls"
         xmlns:converters="clr-namespace:WpfPractice.ValueConverters"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -114,11 +115,21 @@
 
     <Border Background="{StaticResource WordBlueBrush}">
         <Grid >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
             <!-- blue background image -->
             <Grid.Background>
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/Backgrounds/emoji-background.png"/>
             </Grid.Background>
-            <Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={converters:ApplicationPageValueConverter}}"/>
+            <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={converters:ApplicationPageValueConverter}}"/>
+
+            <!-- Side menu -->
+            <controls:SideMenuControl>
+            </controls:SideMenuControl>
         </Grid>
     </Border>
 </Window>

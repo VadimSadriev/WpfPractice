@@ -63,12 +63,12 @@ namespace WpfPractice.ViewModels
         /// <summary>
         /// The window minimum width
         /// </summary>
-        public double WindowMinimumWidth { get; set; } = 400;
+        public double WindowMinimumWidth { get; set; } = 800;
 
         /// <summary>
         /// The window maximum height
         /// </summary>
-        public double WindowMinimumHeight { get; set; } = 400;
+        public double WindowMinimumHeight { get; set; } = 500;
 
         /// <summary>
         /// Size of resize border around the window
@@ -126,7 +126,7 @@ namespace WpfPractice.ViewModels
         /// <summary>
         /// The current page of application
         /// </summary>
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
 
         #endregion
 

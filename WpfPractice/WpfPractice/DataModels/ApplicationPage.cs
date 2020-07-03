@@ -8,6 +8,11 @@
         /// <summary>
         /// The initial login page
         /// </summary>
-        Login = 0
+        Login = 0,
+
+        /// <summary>
+        /// Main chat page
+        /// </summary>
+        Chat = 1
     }
 }
