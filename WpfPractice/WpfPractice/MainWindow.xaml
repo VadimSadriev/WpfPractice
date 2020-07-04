@@ -129,6 +129,7 @@
 
             <!-- Side menu -->
             <controls:SideMenuControl>
+                <controls:ChatListControl />
             </controls:SideMenuControl>
         </Grid>
     </Border>
