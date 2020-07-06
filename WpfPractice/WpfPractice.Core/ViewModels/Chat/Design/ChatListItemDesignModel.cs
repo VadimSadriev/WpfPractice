@@ -1,4 +1,4 @@
-﻿namespace WpfPractice.ViewModels.Chat
+﻿namespace WpfPractice.Core.ViewModels.Chat
 {
     /// <summary>
     /// The design time data for <see cref="ChatListViewModel"/>

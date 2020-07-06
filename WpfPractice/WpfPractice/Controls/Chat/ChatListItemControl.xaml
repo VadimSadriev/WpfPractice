@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfPractice.Controls"
-             xmlns:vms="clr-namespace:WpfPractice.ViewModels.Chat"
+             xmlns:vms="clr-namespace:WpfPractice.Core.ViewModels.Chat;assembly=WpfPractice.Core"
              xmlns:converters="clr-namespace:WpfPractice.ValueConverters"
              mc:Ignorable="d" 
              Height="60"

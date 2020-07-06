@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
-namespace WpfPractice.Expressions
+namespace WpfPractice.Core.Expressions
 {
     public static class ExpressionHelpers
     {
@@ -12,10 +10,10 @@ namespace WpfPractice.Expressions
         {
             return expression.Compile().Invoke();
         }
-        
+
         public static void SetPropertyValue<T>(this Expression<Func<T>> expression, T value)
         {
-            var memberExp = (expression.Body as MemberExpression);
+            var memberExp = expression.Body as MemberExpression;
 
             var propertyInfo = (PropertyInfo)memberExp.Member;
 

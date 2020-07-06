@@ -1,7 +1,7 @@
 ﻿using System.Security;
 using System.Windows.Controls;
-using WpfPractice.ViewModels;
-using WpfPractice.ViewModels.Base;
+using WpfPractice.Core.ViewModels;
+using WpfPractice.Core.ViewModels.Base;
 
 namespace WpfPractice.Pages
 {

@@ -1,6 +1,6 @@
 ﻿using System.Security;
 
-namespace WpfPractice.ViewModels.Base
+namespace WpfPractice.Core.ViewModels.Base
 {
     public interface IHavePassword
     {

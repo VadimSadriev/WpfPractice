@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WpfPractice.Commands;
-using WpfPractice.DataModels;
-using WpfPractice.ViewModels.Base;
+using WpfPractice.Core.Commands;
+using WpfPractice.Core.DataModels;
+using WpfPractice.Core.ViewModels.Base;
 
 namespace WpfPractice.ViewModels
 {
@@ -122,11 +122,6 @@ namespace WpfPractice.ViewModels
         public int TitleHeight { get; set; } = 42;
 
         public GridLength TitleHeightGridLength => new GridLength(TitleHeight + ResizeBorder);
-
-        /// <summary>
-        /// The current page of application
-        /// </summary>
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
 
         #endregion
 

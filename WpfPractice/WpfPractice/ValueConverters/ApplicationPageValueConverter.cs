@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
-using WpfPractice.DataModels;
+using WpfPractice.Core.DataModels;
 using WpfPractice.Pages;
 using WpfPractice.ValueConverters.Base;
 
@@ -20,6 +20,8 @@ namespace WpfPractice.ValueConverters
                     return new LoginPage();
                 case ApplicationPage.Chat:
                     return new ChatPage();
+                case ApplicationPage.Register:
+                    return new RegisterPage();
                 default:
                     Debugger.Break();
                     return null;

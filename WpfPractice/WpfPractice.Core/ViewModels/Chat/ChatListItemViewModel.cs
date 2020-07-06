@@ -1,6 +1,6 @@
-﻿using WpfPractice.ViewModels.Base;
+﻿using WpfPractice.Core.ViewModels.Base;
 
-namespace WpfPractice.ViewModels.Chat
+namespace WpfPractice.Core.ViewModels.Chat
 {
     /// <summary>
     /// View model for each chat list item in the overview chat list

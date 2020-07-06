@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPractice"
         xmlns:controls="clr-namespace:WpfPractice.Controls"
+        xmlns:vms="clr-namespace:WpfPractice.ViewModels"
         xmlns:converters="clr-namespace:WpfPractice.ValueConverters"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -125,7 +126,7 @@
             <Grid.Background>
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/Backgrounds/emoji-background.png"/>
             </Grid.Background>
-            <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={converters:ApplicationPageValueConverter}}"/>
+            <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding ApplicationViewModel.CurrentPage, Source={x:Static vms:ViewModelLocator.Instance}, Converter={converters:ApplicationPageValueConverter}}"/>
 
             <!-- Side menu -->
             <controls:SideMenuControl>

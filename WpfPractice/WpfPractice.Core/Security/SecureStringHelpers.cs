@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
 
-namespace WpfPractice.Security
+namespace WpfPractice.Core.Security
 {
     public static class SecureStringHelpers
     {

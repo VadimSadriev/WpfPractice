@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfPractice.Core.ViewModels;
 using WpfPractice.ViewModels;
 
 namespace WpfPractice

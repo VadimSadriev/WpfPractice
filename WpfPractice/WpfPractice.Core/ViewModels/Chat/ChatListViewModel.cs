@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WpfPractice.ViewModels.Base;
+using WpfPractice.Core.ViewModels.Base;
 
-namespace WpfPractice.ViewModels.Chat
+namespace WpfPractice.Core.ViewModels.Chat
 {
     /// <summary>
     /// View model for the overview chat list

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Fonts\Lato-Black.ttf" />
     <Resource Include="Fonts\Lato-BlackItalic.ttf" />
     <Resource Include="Fonts\Lato-Bold.ttf" />
@@ -39,9 +35,6 @@
     <Page Update="Styles\Buttons.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Windows.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\Texts.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -60,6 +53,10 @@
   <ItemGroup>
     <None Remove="Fonts\fontawesome-webfont.ttf" />
     <None Remove="Images\Backgrounds\emoji-background.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WpfPractice.Core\WpfPractice.Core.csproj" />
   </ItemGroup>
 
 </Project>

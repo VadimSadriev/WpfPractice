@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security;
-using System.Text;
-using System.Threading;
+﻿using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WpfPractice.Commands;
-using WpfPractice.Security;
-using WpfPractice.ViewModels.Base;
+using WpfPractice.Core.Commands;
+using WpfPractice.Core.DataModels;
+using WpfPractice.Core.Ioc;
+using WpfPractice.Core.Security;
+using WpfPractice.Core.ViewModels.Base;
 
-namespace WpfPractice.ViewModels
+namespace WpfPractice.Core.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
         public LoginViewModel()
         {
-            LoginCommand = new RelayParamCommand(async param => await Login(param));
+            LoginCommand = new RelayParamCommand(async param => await LoginAsync(param));
+            RegisterCommand = new RelayCommand(async () => await RegisterAsync());
         }
 
         /// <summary>
@@ -23,7 +22,15 @@ namespace WpfPractice.ViewModels
         /// </summary>
         public bool LoginIsRunning { get; set; }
 
+        /// <summary>
+        /// Command to log in
+        /// </summary>
         public ICommand LoginCommand { get; set; }
+
+        /// <summary>
+        /// Command to register new account
+        /// </summary>
+        public ICommand RegisterCommand { get; set; }
 
         /// <summary>
         /// User Email
@@ -40,7 +47,7 @@ namespace WpfPractice.ViewModels
         /// </summary>
         /// <param name="param"><see cref="SecureString"/> passed from view</param>
         /// <returns></returns>
-        private async Task Login(object param)
+        private async Task LoginAsync(object param)
         {
             await RunCommand(() => LoginIsRunning, async () =>
             {
@@ -51,6 +58,14 @@ namespace WpfPractice.ViewModels
 
                 var pass = page.SecurePassword.UnSecure();
             });
+        }
+
+        /// <summary>
+        /// Takes the user to register page
+        /// </summary>
+        private async Task RegisterAsync()
+        {
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
         }
     }
 }

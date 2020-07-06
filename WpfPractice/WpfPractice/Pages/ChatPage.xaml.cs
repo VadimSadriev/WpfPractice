@@ -1,4 +1,4 @@
-﻿using WpfPractice.ViewModels;
+﻿using WpfPractice.Core.ViewModels;
 
 namespace WpfPractice.Pages
 {

@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using WpfPractice.Expressions;
+using WpfPractice.Core.Expressions;
 
-namespace WpfPractice.ViewModels.Base
+namespace WpfPractice.Core.ViewModels.Base
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

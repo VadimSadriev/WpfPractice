@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using WpfPractice.Animation;
-using WpfPractice.ViewModels.Base;
+using WpfPractice.Core.ViewModels.Base;
 
 namespace WpfPractice.Pages
 {
