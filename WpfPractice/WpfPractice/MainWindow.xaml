@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:WpfPractice.Controls"
         xmlns:vms="clr-namespace:WpfPractice.ViewModels"
         xmlns:converters="clr-namespace:WpfPractice.ValueConverters"
+        xmlns:properties="clr-namespace:WpfPractice.AttachedProperties"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -23,7 +24,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <!-- Outer border with dropshadow margin -->
-                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                        <Border Margin="{Binding OuterMarginSizeThickness, FallbackValue=10}">
 
                             <!-- Main window outline -->
                             <Grid>
@@ -93,7 +94,7 @@
                                     </Grid>
 
                                     <!-- Page Content -->
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}" />
                                     </Border>
                                 </Grid>
@@ -118,7 +119,7 @@
         <Grid >
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -129,7 +130,7 @@
             <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding ApplicationViewModel.CurrentPage, Source={x:Static vms:ViewModelLocator.Instance}, Converter={converters:ApplicationPageValueConverter}}"/>
 
             <!-- Side menu -->
-            <controls:SideMenuControl>
+            <controls:SideMenuControl Width="300" properties:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible, Source={x:Static vms:ViewModelLocator.Instance}}">
                 <controls:ChatListControl />
             </controls:SideMenuControl>
         </Grid>

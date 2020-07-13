@@ -12,13 +12,47 @@ namespace WpfPractice.Animation
         /// <summary>
         /// Adds the slide and fade in animation to the story board
         /// </summary>
-        public static void AddSlideFromRight(this Storyboard sb, float second, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideFromRight(this Storyboard sb, float second, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(second)),
-                From = new Thickness(offset, 0, -offset, 0),
+                From = new Thickness(keepMargin ? offset : 0, 0, -offset, 0),
                 To = new Thickness(0),
+                DecelerationRatio = decelerationRatio
+            };
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            sb.Children.Add(animation);
+        }
+
+        /// <summary>
+        /// Adds a slide from left animation to the storyboard
+        /// </summary>
+        public static void AddSlideFromLeft(this Storyboard sb, float second, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(second)),
+                From = new Thickness(-offset, 0, keepMargin ? offset : 0, 0),
+                To = new Thickness(0),
+                DecelerationRatio = decelerationRatio
+            };
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+            sb.Children.Add(animation);
+        }
+
+        /// <summary>
+        /// Adds a slide to right animation to the story board
+        /// </summary>
+        public static void AddSlideToRight(this Storyboard sb, float second, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(second)),
+                From = new Thickness(0),
+                To = new Thickness(keepMargin ? offset : 0, 0, -offset, 0),
                 DecelerationRatio = decelerationRatio
             };
 
@@ -29,13 +63,13 @@ namespace WpfPractice.Animation
         /// <summary>
         /// Adds a slide to left animation
         /// </summary>
-        public static void AddSlideToLeft(this Storyboard sb, float second, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideToLeft(this Storyboard sb, float second, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(second)),
                 From = new Thickness(0),
-                To = new Thickness(-offset, 0, offset, 0),
+                To = new Thickness(-offset, 0, keepMargin ? offset : 0, 0),
                 DecelerationRatio = decelerationRatio
             };
 

@@ -65,6 +65,8 @@ namespace WpfPractice.Core.ViewModels
         /// </summary>
         private async Task RegisterAsync()
         {
+            IoC.Get<ApplicationViewModel>().SideMenuVisible ^= true;
+            return;
             IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
         }
     }

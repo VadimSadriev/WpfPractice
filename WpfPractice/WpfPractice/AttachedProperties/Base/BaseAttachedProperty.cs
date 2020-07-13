@@ -17,6 +17,11 @@ namespace WpfPractice.AttachedProperties.Base
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, args) => { };
 
         /// <summary>
+        /// Fired when value changes even if value is the same
+        /// </summary>
+        public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
+
+        /// <summary>
         /// A singleton instance of parent class
         /// </summary>
         public static TParent Instance { get; private set; } = new TParent();
@@ -25,7 +30,15 @@ namespace WpfPractice.AttachedProperties.Base
         /// The actual Attached property
         /// </summary>
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.RegisterAttached("Value", typeof(TProperty), typeof(BaseAttachedProperty<TParent, TProperty>), new PropertyMetadata(new PropertyChangedCallback(OnValuePropertyChanged)));
+            DependencyProperty.RegisterAttached(
+                "Value",
+                typeof(TProperty),
+                typeof(BaseAttachedProperty<TParent, TProperty>),
+                new UIPropertyMetadata(
+                    default(TProperty),
+                    new PropertyChangedCallback(OnValuePropertyChanged),
+                    new CoerceValueCallback(OnValuePropertyUpdated)
+                    ));
 
         /// <summary>
         /// Callback event when value property has changed
@@ -38,6 +51,21 @@ namespace WpfPractice.AttachedProperties.Base
 
             // Call event listeners
             Instance.ValueChanged(d, e);
+        }
+
+        /// <summary>
+        /// Callback event when property changed if value is still the same
+        /// </summary>
+        /// <param name="d">The UI element that has changed</param>
+        private static object OnValuePropertyUpdated(DependencyObject d, object value)
+        {
+            // Call parent function
+            Instance.OnValueUpdated(d, value);
+
+            // Call event listeners
+            Instance.ValueUpdated(d, value);
+
+            return value;
         }
 
         /// <summary>
@@ -60,6 +88,14 @@ namespace WpfPractice.AttachedProperties.Base
         /// Method called when any attached property of this type is changed
         /// </summary>
         public virtual void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Method called when any attached property of this type is changed even if the value the same
+        /// </summary>
+        public virtual void OnValueUpdated(DependencyObject sender, object value)
         {
 
         }

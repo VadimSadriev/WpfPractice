@@ -12,5 +12,10 @@ namespace WpfPractice.Core.ViewModels
         /// The current page of application
         /// </summary>
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+
+        /// <summary>
+        /// True is side menu should be shown
+        /// </summary>
+        public bool SideMenuVisible { get; set; } = false;
     }
 }
