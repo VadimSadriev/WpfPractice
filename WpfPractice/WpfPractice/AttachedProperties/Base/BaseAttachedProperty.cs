@@ -9,7 +9,7 @@ namespace WpfPractice.AttachedProperties.Base
     /// <typeparam name="TParent">Parent class to be the attached property</typeparam>
     /// <typeparam name="TProperty">Type of this attached property</typeparam>
     public abstract class BaseAttachedProperty<TParent, TProperty>
-        where TParent : BaseAttachedProperty<TParent, TProperty>, new()
+        where TParent : new()
     {
         /// <summary>
         /// Fired when value changes
@@ -47,10 +47,10 @@ namespace WpfPractice.AttachedProperties.Base
         private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             // Call parent function
-            Instance.OnValueChanged(d, e);
+            (Instance as BaseAttachedProperty<TParent, TProperty>)?.OnValueChanged(d, e);
 
             // Call event listeners
-            Instance.ValueChanged(d, e);
+            (Instance as BaseAttachedProperty<TParent, TProperty>)?.ValueChanged(d, e);
         }
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace WpfPractice.AttachedProperties.Base
         private static object OnValuePropertyUpdated(DependencyObject d, object value)
         {
             // Call parent function
-            Instance.OnValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<TParent, TProperty>)?.OnValueUpdated(d, value);
 
             // Call event listeners
-            Instance.ValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<TParent, TProperty>)?.ValueUpdated(d, value);
 
             return value;
         }

@@ -9,18 +9,21 @@ using WpfPractice.Core.ViewModels.Base;
 
 namespace WpfPractice.Core.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    /// <summary>
+    /// View model for register page
+    /// </summary>
+    public class RegisterViewModel : BaseViewModel
     {
-        public LoginViewModel()
+        public RegisterViewModel()
         {
-            LoginCommand = new RelayParamCommand(async param => await LoginAsync(param));
-            RegisterCommand = new RelayCommand(async () => await RegisterAsync());
+            RegisterCommand = new RelayParamCommand(async param => await RegisterAsync(param));
+            LoginCommand = new RelayCommand(async () => await LoginAsync());
         }
 
         /// <summary>
         /// Flag if login is running
         /// </summary>
-        public bool LoginIsRunning { get; set; }
+        public bool RegisterIsRunning { get; set; }
 
         /// <summary>
         /// Command to log in
@@ -43,32 +46,23 @@ namespace WpfPractice.Core.ViewModels
         public SecureString Password { get; set; }
 
         /// <summary>
-        /// Log in User
+        /// Register a new user
         /// </summary>
         /// <param name="param"><see cref="SecureString"/> passed from view</param>
-        /// <returns></returns>
-        private async Task LoginAsync(object param)
+        private async Task RegisterAsync(object param)
         {
-            await RunCommand(() => LoginIsRunning, async () =>
+            await RunCommand(() => RegisterIsRunning, async () =>
             {
-                await Task.Delay(1000);
-
-                // Go to chat page
-                IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
-
-                //if (!(param is IHavePassword page))
-                //    return;
-
-                //var pass = page.SecurePassword.UnSecure();
+                await Task.Delay(5000);
             });
         }
 
         /// <summary>
-        /// Takes the user to register page
+        /// Takes the user to login page
         /// </summary>
-        private async Task RegisterAsync()
+        private async Task LoginAsync()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Register);
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
         }
     }
 }

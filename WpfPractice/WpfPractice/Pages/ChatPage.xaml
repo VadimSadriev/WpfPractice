@@ -11,6 +11,6 @@
       x:Name="Page"
       Title="Chat">
     <Border>
-     
+        <TextBlock Text="Hello" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
     </Border>
 </local:BasePage>
