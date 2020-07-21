@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:WpfPractice.Controls"
              xmlns:vms="clr-namespace:WpfPractice.Core.ViewModels.Chat;assembly=WpfPractice.Core"
              xmlns:converters="clr-namespace:WpfPractice.ValueConverters"
-             mc:Ignorable="d" 
-             Height="60"
-             d:DesignHeight="60" d:DesignWidth="300">
+             mc:Ignorable="d"
+             d:DesignWidth="300">
 
     <UserControl.Resources>
         <Style x:Key="ContentSyle" TargetType="{x:Type ContentControl}">
@@ -28,18 +27,19 @@
                                 <Border Background="Red" Width="4" Visibility="{Binding NewContentAvailable, Converter={converters:BooleanToVisiblityConverter}, ConverterParameter=True}"  HorizontalAlignment="Left"/>
 
                                 <!-- Profile picture padding -->
-                                <Border Grid.Column="0" Padding="8">
+                                <Border Grid.Column="0"
+                                        Padding="8 15">
                                     <!-- Profile picture background -->
-                                    <Border Background="{Binding ProfilePictureRGB, Converter={converters:StringRgbToBrushConverter}}"
-                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                    >
+                                    <Border Height="40" Background="{Binding ProfilePictureRGB, Converter={converters:StringRgbToBrushConverter}}"
+                                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    >
                                         <!-- Profile picture initials -->
                                         <TextBlock Text="{Binding Initials}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    Foreground="{StaticResource ForegroundLightBrush}"
-                                   FontSize="{StaticResource FontSizeAverage}"
+                                   FontSize="{StaticResource FontSizeLarge}"
                                    FontFamily="{StaticResource LatoRegular}"
                                    />
                                     </Border>
@@ -50,17 +50,19 @@
                                     <StackPanel VerticalAlignment="Center">
                                         <!-- Name -->
                                         <TextBlock Text="{Binding Name}"
-                                   Foreground="{StaticResource WordBlueBrush}"
-                                   FontFamily="{StaticResource LatoRegular}"
-                                   TextTrimming="CharacterEllipsis"
-                                   />
+                                        Padding="0 0 0 3"
+                                        Foreground="{StaticResource WordBlueBrush}"
+                                        FontFamily="{StaticResource LatoRegular}"
+                                        TextTrimming="CharacterEllipsis"
+                                        />
 
                                         <!-- Message -->
                                         <TextBlock Text="{Binding Message}"
-                                   Foreground="{StaticResource ForegroundDarkBrush}"
-                                   TextTrimming="CharacterEllipsis"
-                                   FontFamily="{StaticResource LatoRegular}"
-                                   />
+                                       Padding="0 2 0 0"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"
+                                       TextTrimming="CharacterEllipsis"
+                                       FontFamily="{StaticResource LatoRegular}"
+                                       />
                                     </StackPanel>
                                 </Border>
                             </Grid>

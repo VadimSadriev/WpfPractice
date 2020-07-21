@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfPractice.Pages"
+      xmlns:controls="clr-namespace:WpfPractice.Controls"
       xmlns:vms="clr-namespace:WpfPractice.Core.ViewModels;assembly=WpfPractice.Core"
       xmlns:attachedProperties="clr-namespace:WpfPractice.AttachedProperties"
       mc:Ignorable="d" 
@@ -11,6 +12,6 @@
       x:Name="Page"
       Title="Chat">
     <Border>
-        <TextBlock Text="Hello" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <controls:ChatMessageListControl />
     </Border>
 </local:BasePage>
